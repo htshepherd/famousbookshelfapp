@@ -8,7 +8,7 @@
           </div>
           <div class="brand-names">
             <span class="name-main">Famous Bookshelf</span>
-            <span class="name-sub">Console / Admin</span>
+            <span class="name-sub">管理系统</span>
           </div>
         </router-link>
       </div>
@@ -20,11 +20,26 @@
           <span>{{ item.label }}</span>
         </router-link>
 
+        <div class="nav-section-label">系统管理</div>
+        <router-link to="/admin/users" class="nav-item">
+          <el-icon><User /></el-icon>
+          <span>用户管理</span>
+        </router-link>
+        <router-link to="/admin/roles" class="nav-item">
+          <el-icon><Peoples /></el-icon>
+          <span>角色管理</span>
+        </router-link>
+        <router-link to="/admin/menus" class="nav-item">
+          <el-icon><MenuIcon /></el-icon>
+          <span>菜单管理</span>
+        </router-link>
+
         <div class="nav-section-label">工具与数据</div>
         <router-link to="/admin/import" class="nav-item">
           <el-icon><Upload /></el-icon>
           <span>批量导入</span>
         </router-link>
+
       </nav>
 
       <footer class="sidebar-footer">
@@ -43,8 +58,18 @@
           <span class="current">{{ currentPageTitle }}</span>
         </div>
         <div class="user-pill">
-          <div class="user-avatar shadow-sm">A</div>
-          <span>Administrator</span>
+          <div class="user-avatar shadow-sm">{{ adminInitial }}</div>
+          <el-dropdown trigger="click" @command="handleCommand">
+            <span class="el-dropdown-link" style="cursor: pointer; display: flex; align-items: center; color: var(--text-primary); font-weight: 700;">
+              {{ adminUsername }}
+              <el-icon class="el-icon--right"><ArrowDown /></el-icon>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
       </header>
       
@@ -62,8 +87,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import { 
   Collection, 
   Edit, 
@@ -72,10 +98,26 @@ import {
   Upload, 
   Back, 
   ArrowRight,
-  Reading
+  ArrowDown,
+  Reading,
+  Menu as MenuIcon,
+  Memo as Peoples
 } from '@element-plus/icons-vue'
 
 const route = useRoute()
+const router = useRouter()
+
+const adminUsername = ref(localStorage.getItem('admin_username') || 'Administrator')
+const adminInitial = computed(() => adminUsername.value ? adminUsername.value.charAt(0).toUpperCase() : 'A')
+
+const handleCommand = (command) => {
+  if (command === 'logout') {
+    localStorage.removeItem('admin_token')
+    localStorage.removeItem('admin_username')
+    ElMessage.success('已退出登录')
+    router.push('/login')
+  }
+}
 
 const navMain = [
   { path: '/admin/books', label: '图书管理', icon: Collection },
@@ -90,7 +132,10 @@ const currentPageTitle = computed(() => {
     '/admin/authors': '作者管理',
     '/admin/celebrities': '名人管理',
     '/admin/recommendations': '推荐记录',
-    '/admin/import': '数据批量导入'
+    '/admin/import': '数据批量导入',
+    '/admin/users': '用户管理',
+    '/admin/roles': '角色管理',
+    '/admin/menus': '菜单管理'
   }
   return titles[route.path] || '管理中心'
 })
