@@ -313,6 +313,7 @@ onMounted(async () => {
   line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 1; /* 保持高度一致性，建议单行 */
+  line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -332,6 +333,7 @@ onMounted(async () => {
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

@@ -15,7 +15,7 @@
 
     <div class="content-container">
       <div v-if="loading" class="skeleton-grid">
-        <div v-for="i in 8" :key="i" class="skeleton-card">
+        <div v-for="i in 12" :key="i" class="skeleton-card">
           <div class="skeleton-visual"></div>
           <div class="skeleton-body">
             <div class="skeleton-line title"></div>
@@ -203,7 +203,7 @@ onMounted(() => {
 /* Books Grid */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 40px 32px;
 }
 
@@ -277,6 +277,7 @@ onMounted(() => {
   color: #1d1d1f;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   min-height: 44px;
@@ -305,7 +306,7 @@ onMounted(() => {
 /* Skeletons */
 .skeleton-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 40px 32px;
 }
 
@@ -364,6 +365,7 @@ onMounted(() => {
   margin-bottom: 16px;
   display: -webkit-box;
   -webkit-line-clamp: 6;
+  line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -383,11 +385,15 @@ onMounted(() => {
   font-size: 14px;
 }
 
+@media (max-width: 1100px) {
+  .books-grid, .skeleton-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 768px) {
   .page-header { padding: 80px 0 40px; }
   .page-title { font-size: 32px; }
   .header-container, .content-container { padding: 0 24px; }
-  .books-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 24px 16px; }
+  .books-grid, .skeleton-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
   .book-title { font-size: 15px; min-height: 36px; }
   .book-visual { margin-bottom: 12px; }
 }

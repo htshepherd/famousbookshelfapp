@@ -187,8 +187,8 @@ onMounted(() => {
 /* Celebrity Grid */
 .celebrity-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px 12px;
 }
 
 .celebrity-card {
@@ -198,27 +198,28 @@ onMounted(() => {
 
 .card-inner {
   background: #fff;
-  border-radius: 32px;
-  padding: 32px 24px;
+  border-radius: 20px;
+  padding: 16px 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
+  text-align: left;
   border: 1px solid rgba(0, 0, 0, 0.04);
   position: relative;
   overflow: hidden;
   height: 100%;
+  gap: 16px;
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .avatar-wrapper {
-  width: 100px;
-  height: 100px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 24px;
+  flex-shrink: 0;
   background: #f5f5f7;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -240,23 +241,24 @@ onMounted(() => {
 }
 
 .celebrity-name {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   color: #1d1d1f;
 }
 
 .group-tag {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 13px;
+  justify-content: flex-start;
+  gap: 4px;
+  font-size: 11px;
   font-weight: 600;
   color: #86868b;
   background: #f3f3f5;
-  padding: 4px 12px;
-  border-radius: 12px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  width: fit-content;
 }
 
 .hover-overlay {
@@ -287,27 +289,27 @@ onMounted(() => {
 /* Skeletons */
 .skeleton-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px 12px;
 }
 
 .skeleton-card {
-  height: 240px;
+  height: 88px;
   background: #f5f5f7;
-  border-radius: 32px;
+  border-radius: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: 32px;
+  padding: 16px 20px;
+  gap: 16px;
 }
 
 .skeleton-avatar {
-  width: 100px;
-  height: 100px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #eee;
-  margin-bottom: 24px;
+  flex-shrink: 0;
   animation: pulse 1.5s infinite ease-in-out;
 }
 
@@ -318,8 +320,8 @@ onMounted(() => {
   animation: pulse 1.5s infinite ease-in-out;
 }
 
-.skeleton-line.title { width: 60%; height: 20px; }
-.skeleton-line.meta { width: 40%; height: 16px; }
+.skeleton-line.title { width: 100px; height: 16px; }
+.skeleton-line.meta { width: 60px; height: 12px; }
 
 @keyframes pulse {
   0% { opacity: 0.6; }
@@ -335,13 +337,30 @@ onMounted(() => {
   font-size: 14px;
 }
 
+@media (max-width: 1400px) {
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (max-width: 1200px) {
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 768px) {
-  .page-header { padding: 100px 0 40px; }
+  .page-header { padding: 80px 0 40px; }
   .page-title { font-size: 32px; }
   .header-container, .content-container { padding: 0 24px; }
-  .celebrity-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
-  .card-inner { padding: 24px 16px; border-radius: 24px; }
-  .avatar-wrapper { width: 80px; height: 80px; }
-  .celebrity-name { font-size: 17px; }
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .card-inner, .skeleton-card { padding: 10px; border-radius: 12px; gap: 8px; height: auto; }
+  .avatar-wrapper, .skeleton-avatar { width: 40px; height: 40px; }
+  .celebrity-name { font-size: 14px; }
+  .group-tag { font-size: 9px; padding: 1px 4px; }
+}
+
+@media (max-width: 480px) {
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
