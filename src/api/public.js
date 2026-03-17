@@ -50,6 +50,20 @@ export const getAuthorBooks = (id) => {
     })
 }
 
+export const getAllCelebrities = () => {
+    return request({
+        url: '/public/celebrities/all',
+        method: 'get'
+    })
+}
+
+export const getClassicBooks = () => {
+    return request({
+        url: '/public/books/classics',
+        method: 'get'
+    })
+}
+
 // Fixed: Export as publicApi object to support the component imports
 export const publicApi = {
     search,
@@ -58,5 +72,7 @@ export const publicApi = {
     getCelebrityDetail,
     getCelebrityRecommendations,
     getAuthorDetail,
-    getAuthorBooks
+    getAuthorBooks,
+    getAllCelebrities,
+    getClassicBooks
 }

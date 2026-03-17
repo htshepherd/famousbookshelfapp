@@ -115,7 +115,7 @@
         <section v-else class="discovery-view reveal-fluid">
           <div class="pillar-layout">
             <!-- Pillar 1: Books -->
-            <div class="discover-pillar glass-effect" @click="quickSearch('')">
+            <div class="discover-pillar glass-effect" @click="$router.push('/classics')">
               <div class="pillar-visual books-visual">
                 <el-icon :size="48"><Collection /></el-icon>
               </div>
@@ -128,7 +128,7 @@
             </div>
             
             <!-- Pillar 2: Celebrities -->
-            <div class="discover-pillar glass-effect" @click="quickSearch('')">
+            <div class="discover-pillar glass-effect" @click="$router.push('/celebrities')">
               <div class="pillar-visual people-visual">
                 <el-icon :size="48"><User /></el-icon>
               </div>

@@ -13,9 +13,19 @@ const routes = [
         name: 'BookDetail'
     },
     {
+        path: '/classics',
+        component: () => import('@/views/ClassicBooks.vue'),
+        name: 'ClassicBooks'
+    },
+    {
         path: '/celebrities/:id',
         component: () => import('@/views/CelebrityDetail.vue'),
         name: 'CelebrityDetail'
+    },
+    {
+        path: '/celebrities',
+        component: () => import('@/views/CelebrityList.vue'),
+        name: 'CelebrityList'
     },
     {
         path: '/authors/:id',
