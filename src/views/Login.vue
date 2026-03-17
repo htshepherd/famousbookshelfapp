@@ -80,7 +80,7 @@ const handleLogin = async () => {
       try {
         const res = await request.post('/auth/login', loginForm)
         if (res && res.token) {
-          Cookies.set('admin_token', res.token, { expires: 7, secure: true, sameSite: 'strict' })
+          Cookies.set('admin_token', res.token, { expires: 7, sameSite: 'strict' })
           localStorage.setItem('admin_username', res.username || loginForm.username)
           ElMessage.success('登录成功')
           router.push('/admin/books')
