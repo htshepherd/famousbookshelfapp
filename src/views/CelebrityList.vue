@@ -357,6 +357,10 @@ onMounted(() => {
 }
 
 @media (max-width: 480px) {
-  .celebrity-grid, .skeleton-grid { grid-template-columns: 1fr; }
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card-inner, .skeleton-card { padding: 10px; gap: 8px; }
+  .avatar-wrapper, .skeleton-avatar { width: 36px; height: 36px; }
+  .celebrity-name { font-size: 13px; }
+  .group-tag { font-size: 9px; padding: 1px 4px; }
 }
 </style>
