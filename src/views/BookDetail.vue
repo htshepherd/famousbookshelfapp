@@ -1,8 +1,23 @@
 <template>
   <div class="detail-page-view">
-    <div v-if="loading" class="loading-full">
-      <div class="apple-spinner"></div>
-      <p>正在加载...</p>
+    <div v-if="loading" class="detail-skeleton">
+      <el-skeleton animated>
+        <template #template>
+          <div class="skeleton-nav">
+             <el-skeleton-item variant="text" style="width: 200px; height: 20px" />
+          </div>
+          <div class="detail-container">
+            <div class="book-info-hero">
+              <el-skeleton-item variant="image" class="hero-cover-wrapper" />
+              <div class="hero-main">
+                <el-skeleton-item variant="h1" style="width: 70%; height: 60px; margin-bottom: 24px" />
+                <el-skeleton-item variant="text" style="width: 40%; height: 30px; margin-bottom: 48px" />
+                <el-skeleton-item variant="rect" style="width: 100%; height: 200px" />
+              </div>
+            </div>
+          </div>
+        </template>
+      </el-skeleton>
     </div>
 
     <template v-else-if="book">
@@ -23,7 +38,7 @@
           <!-- Left: Hero Book Cover -->
           <div class="hero-aside">
             <div class="hero-cover-wrapper">
-              <img v-if="book.coverUrl" :src="book.coverUrl" alt="" class="hero-cover-img" />
+              <img v-if="book.coverUrl" :src="book.coverUrl" alt="" class="hero-cover-img" @error="book.coverUrl = null" />
               <div v-else class="hero-cover-placeholder premium-placeholder-book">
                 <el-icon :size="80"><Reading /></el-icon>
               </div>
@@ -67,7 +82,7 @@
               @click="goToCelebrity(rec.celebrityId)"
             >
               <div class=" ünlü-avatar-box">
-                <img v-if="rec.avatarUrl || rec.celebrityAvatarUrl" :src="rec.avatarUrl || rec.celebrityAvatarUrl" />
+                <img v-if="rec.avatarUrl || rec.celebrityAvatarUrl" :src="rec.avatarUrl || rec.celebrityAvatarUrl" @error="rec.avatarUrl = null; rec.celebrityAvatarUrl = null" />
                 <div v-else class="premium-placeholder-avatar">
                   <el-icon :size="20"><User /></el-icon>
                 </div>
@@ -327,6 +342,20 @@ onMounted(async () => {
 .loading-full { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; }
 .apple-spinner { width: 32px; height: 32px; border: 3px solid rgba(0,0,0,0.03); border-top-color: #0071e3; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 16px; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* Skeleton Styles */
+.detail-skeleton {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 40px;
+}
+.skeleton-nav {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  margin-bottom: 80px;
+}
 
 @media (max-width: 960px) {
   .book-info-hero { grid-template-columns: 1fr; gap: 40px; }

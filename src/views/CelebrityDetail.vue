@@ -1,8 +1,28 @@
 <template>
   <div class="detail-page-view">
-    <div v-if="loading" class="loading-full">
-      <div class="apple-spinner"></div>
-      <p>正在加载...</p>
+    <div v-if="loading" class="detail-skeleton">
+      <el-skeleton animated>
+        <template #template>
+          <div class="skeleton-nav">
+             <el-skeleton-item variant="text" style="width: 200px; height: 20px" />
+          </div>
+          <div class="detail-container">
+            <div class="celeb-profile-layout">
+              <div class="celeb-aside">
+                <el-skeleton-item variant="circle" style="width: 140px; height: 140px; margin: 0 auto 32px" />
+                <el-skeleton-item variant="h1" style="width: 60%; height: 30px; margin: 0 auto 10px" />
+                <el-skeleton-item variant="text" style="width: 40%; height: 20px; margin: 0 auto" />
+              </div>
+              <div class="celeb-main-content">
+                <el-skeleton-item variant="h2" style="width: 30%; height: 30px; margin-bottom: 40px" />
+                <div class="rec-masonry-grid">
+                  <el-skeleton-item v-for="i in 4" :key="i" variant="rect" style="width: 100%; height: 120px; border-radius: 20px" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </el-skeleton>
     </div>
 
     <template v-else-if="celebrity">
@@ -24,7 +44,7 @@
           <aside class="celeb-aside">
             <div class="celeb-profile-glass glass-effect">
               <div class="avatar-wrapper">
-                <img v-if="celebrity.avatarUrl" :src="celebrity.avatarUrl" alt="" />
+                <img v-if="celebrity.avatarUrl" :src="celebrity.avatarUrl" alt="" @error="celebrity.avatarUrl = null" />
                 <div v-else class="premium-placeholder-avatar" style="width:100%; height:100%;">
                   <el-icon><User /></el-icon>
                 </div>
@@ -52,7 +72,7 @@
                 @click="goToBook(rec.bookId)"
               >
                 <div class="book-visual">
-                  <img v-if="rec.bookCoverUrl" :src="rec.bookCoverUrl" alt="" />
+                  <img v-if="rec.bookCoverUrl" :src="rec.bookCoverUrl" alt="" @error="rec.bookCoverUrl = null" />
                   <div v-else class="premium-placeholder-book" style="width:100%; height:100%;">
                     <el-icon><Reading /></el-icon>
                   </div>
@@ -332,6 +352,20 @@ onMounted(async () => {
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* Skeleton Styles */
+.detail-skeleton {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 40px;
+}
+.skeleton-nav {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  margin-bottom: 60px;
+}
 
 @media (max-width: 860px) {
   .celeb-profile-layout { grid-template-columns: 1fr; }

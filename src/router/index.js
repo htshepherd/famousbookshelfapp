@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Cookies from 'js-cookie'
 
 const routes = [
     {
@@ -72,6 +73,12 @@ const routes = [
                 name: 'AdminMenus'
             }
         ]
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('@/views/HomePage.vue'),
+        redirect: '/'
     }
 ]
 
@@ -80,9 +87,10 @@ const router = createRouter({
     routes
 })
 
+
 // Navigation guard to protect admin routes
 router.beforeEach((to, from, next) => {
-    const token = localStorage.getItem('admin_token')
+    const token = Cookies.get('admin_token')
     if (to.path.startsWith('/admin')) {
         if (token) {
             next()

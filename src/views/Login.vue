@@ -56,6 +56,7 @@ import { useRouter } from 'vue-router'
 import { User, Lock, Reading } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import request from '@/api/request'
+import Cookies from 'js-cookie'
 
 const router = useRouter()
 const loginFormRef = ref(null)
@@ -79,14 +80,13 @@ const handleLogin = async () => {
       try {
         const res = await request.post('/auth/login', loginForm)
         if (res && res.token) {
-          localStorage.setItem('admin_token', res.token)
+          Cookies.set('admin_token', res.token, { expires: 7, secure: true, sameSite: 'strict' })
           localStorage.setItem('admin_username', res.username || loginForm.username)
           ElMessage.success('登录成功')
           router.push('/admin/books')
         }
       } catch (error) {
-        // Error is handled by request interceptor, but we can also log it
-        console.error('Login failed', error)
+        // Error is handled by request interceptor
       } finally {
         loading.value = false
       }

@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import Cookies from 'js-cookie'
 
 const instance = axios.create({
-    baseURL: '/api',
+    baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
     timeout: 10000,
 })
 
@@ -10,7 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
     (config) => {
         // Add auth headers
-        const token = localStorage.getItem('admin_token')
+        const token = Cookies.get('admin_token')
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`
         }
@@ -28,7 +29,7 @@ instance.interceptors.response.use(
         if (res.code === 200) {
             return res.data
         } else if (res.code === 401) {
-            localStorage.removeItem('admin_token')
+            Cookies.remove('admin_token')
             localStorage.removeItem('admin_username')
             ElMessage.error(res.message || '登录过期，请重新登录')
             window.location.href = '/login'
@@ -40,7 +41,7 @@ instance.interceptors.response.use(
     },
     (error) => {
         if (error.response && error.response.status === 401) {
-            localStorage.removeItem('admin_token')
+            Cookies.remove('admin_token')
             localStorage.removeItem('admin_username')
             ElMessage.error('登录过期，请重新登录')
             window.location.href = '/login'

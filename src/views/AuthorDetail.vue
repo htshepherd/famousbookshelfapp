@@ -1,8 +1,26 @@
 <template>
   <div class="detail-page-view">
-    <div v-if="loading" class="loading-full">
-      <div class="apple-spinner"></div>
-      <p>正在加载...</p>
+    <div v-if="loading" class="detail-skeleton">
+      <el-skeleton animated>
+        <template #template>
+          <div class="skeleton-nav">
+             <el-skeleton-item variant="text" style="width: 200px; height: 20px" />
+          </div>
+          <div class="detail-container">
+            <div class="author-layout">
+              <div class="author-sidebar">
+                <el-skeleton-item variant="rect" style="width: 100%; height: 200px; border-radius: 32px" />
+              </div>
+              <div class="author-main-flow">
+                <el-skeleton-item variant="h2" style="width: 30%; height: 30px; margin-bottom: 40px" />
+                <div class="works-exhibition-list">
+                  <el-skeleton-item v-for="i in 3" :key="i" variant="rect" style="width: 100%; height: 160px; border-radius: 24px" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </el-skeleton>
     </div>
 
     <template v-else-if="author">
@@ -51,7 +69,7 @@
                 @click="goToBook(book.bookId)"
               >
                 <div class="work-hero-visual">
-                  <img v-if="book.coverUrl" :src="book.coverUrl" alt="" />
+                  <img v-if="book.coverUrl" :src="book.coverUrl" alt="" @error="book.coverUrl = null" />
                   <div v-else class="premium-placeholder-book" style="width:100%; height:100%;">
                     <el-icon><Reading /></el-icon>
                   </div>
@@ -344,6 +362,20 @@ onMounted(async () => {
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* Skeleton Styles */
+.detail-skeleton {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 40px;
+}
+.skeleton-nav {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  margin-bottom: 60px;
+}
 
 @media (max-width: 860px) {
   .author-layout { grid-template-columns: 1fr; }

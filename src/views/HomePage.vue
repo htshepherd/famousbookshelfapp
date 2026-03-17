@@ -60,7 +60,7 @@
                 <div class="grid-vertical">
                   <div v-for="book in results.books" :key="book.bookId" class="glass-item" @click="goTo('books', book.bookId)">
                     <div class="item-visual-book">
-                      <img v-if="book.coverUrl" :src="book.coverUrl" />
+                      <img v-if="book.coverUrl" :src="book.coverUrl" @error="book.coverUrl = null" />
                       <div v-else class="premium-placeholder-book" style="width: 100%; height: 100%;">
                         <el-icon><Reading /></el-icon>
                       </div>
@@ -83,7 +83,7 @@
                 <div class="grid-vertical">
                   <div v-for="cele in results.celebrities" :key="cele.celebrityId" class="glass-item" @click="goTo('celebrities', cele.celebrityId)">
                     <div class="item-visual-avatar">
-                      <img v-if="cele.avatarUrl" :src="cele.avatarUrl" />
+                      <img v-if="cele.avatarUrl" :src="cele.avatarUrl" @error="cele.avatarUrl = null" />
                       <div v-else class="premium-placeholder-avatar" style="width: 100%; height: 100%;">
                         <el-icon><User /></el-icon>
                       </div>

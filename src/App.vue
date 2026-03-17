@@ -37,13 +37,35 @@
           <div class="footer-links">
             <div class="link-group">
               <span class="group-title">关于</span>
-              <a href="#">产品介绍</a>
-              <a href="#">数据来源</a>
+              <el-popover placement="top" :width="300" trigger="hover" popper-class="premium-popover">
+                <template #reference>
+                  <a href="javascript:void(0)">产品介绍</a>
+                </template>
+                <div class="popover-text">
+                  影响世界的人，与影响他们的书。在这里，发现影响世界的人的阅读清单。
+                </div>
+              </el-popover>
+              
+              <el-popover placement="top" :width="240" trigger="hover" popper-class="premium-popover">
+                <template #reference>
+                  <a href="javascript:void(0)">数据来源</a>
+                </template>
+                <div class="popover-text">
+                  本站内容均搜集自互联网公开资料，旨在分享智慧与灵感。如有侵权，请联系我们删除。
+                </div>
+              </el-popover>
             </div>
             <div class="link-group">
-              <span class="group-title">共建</span>
-              <a href="#">提交收录</a>
-              <a href="#">开源代码</a>
+              <span class="group-title">与我联系</span>
+              <el-popover placement="top" :width="180" trigger="hover" popper-class="premium-popover">
+                <template #reference>
+                  <a href="javascript:void(0)">联系方式</a>
+                </template>
+                <div class="contact-item">
+                  <el-icon><Phone /></el-icon>
+                  <a href="tel:13110013655">13110013655</a>
+                </div>
+              </el-popover>
             </div>
           </div>
         </div>
@@ -193,6 +215,51 @@ const isAdminPage = computed(() => route.path.startsWith('/admin'))
 }
 
 .link-group a:hover { color: var(--accent-primary); }
+
+/* Premium Popover Styles */
+:deep(.premium-popover) {
+  padding: 16px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+.popover-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.popover-contact-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.contact-item a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.contact-item a:hover {
+  opacity: 0.7;
+}
+
+.contact-item .el-icon {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 
 .footer-bottom {
   padding-top: 40px;
