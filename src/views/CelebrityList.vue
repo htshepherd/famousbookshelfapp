@@ -187,8 +187,8 @@ onMounted(() => {
 /* Celebrity Grid */
 .celebrity-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 24px;
 }
 
 .celebrity-card {
@@ -289,8 +289,8 @@ onMounted(() => {
 /* Skeletons */
 .skeleton-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 24px;
 }
 
 .skeleton-card {
@@ -337,30 +337,26 @@ onMounted(() => {
   font-size: 14px;
 }
 
-@media (max-width: 1400px) {
-  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(5, 1fr); }
-}
-
-@media (max-width: 1200px) {
-  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-@media (max-width: 900px) {
+@media (max-width: 1250px) {
   .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 950px) {
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
   .page-header { padding: 80px 0 40px; }
   .page-title { font-size: 32px; }
   .header-container, .content-container { padding: 0 24px; }
-  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .card-inner, .skeleton-card { padding: 10px; border-radius: 12px; gap: 8px; height: auto; }
-  .avatar-wrapper, .skeleton-avatar { width: 40px; height: 40px; }
-  .celebrity-name { font-size: 14px; }
-  .group-tag { font-size: 9px; padding: 1px 4px; }
+  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .card-inner, .skeleton-card { padding: 12px; border-radius: 12px; gap: 8px; height: auto; }
+  .avatar-wrapper, .skeleton-avatar { width: 44px; height: 44px; }
+  .celebrity-name { font-size: 15px; }
+  .group-tag { font-size: 10px; padding: 1px 6px; }
 }
 
 @media (max-width: 480px) {
-  .celebrity-grid, .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
+  .celebrity-grid, .skeleton-grid { grid-template-columns: 1fr; }
 }
 </style>
