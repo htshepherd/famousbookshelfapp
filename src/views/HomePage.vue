@@ -295,12 +295,12 @@ const goTo = (type, id) => {
 }
 
 .search-trends {
-  margin-top: 24px; display: flex; justify-content: center; gap: 20px;
+  margin-top: 24px; display: flex; justify-content: center; align-items: center; gap: 20px;
 }
-.search-trends span { font-size: 13px; color: #86868b; font-weight: 500; }
+.search-trends span { font-size: 13px; color: #86868b; font-weight: 500; line-height: 1.2; }
 .search-trends button {
-  background: none; border: none; cursor: pointer;
-  color: #0071e3; font-size: 13px; font-weight: 600;
+  background: none; border: none; cursor: pointer; padding: 0;
+  color: #0071e3; font-size: 13px; font-weight: 600; line-height: 1.2;
   transition: color 0.15s;
 }
 .search-trends button:hover { color: #4facfe; }
@@ -492,5 +492,107 @@ const goTo = (type, id) => {
 @media (max-width: 860px) {
   .hero-title { font-size: 48px; padding: 0 20px; }
   .pillar-layout, .results-columns { grid-template-columns: 1fr; }
+}
+
+/* ===== Mobile / H5 ===== */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0 24px;
+  }
+
+  .fluid-hero {
+    padding: 100px 0 60px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+    padding: 0;
+  }
+
+  /* Search bar: touch-friendly */
+  .glass-search {
+    height: 56px;
+    padding: 0 18px;
+    gap: 12px;
+    border-radius: 28px;
+  }
+
+  .glass-input {
+    font-size: 16px; /* Avoid iOS auto-zoom */
+  }
+
+  /* Hide keyboard shortcut hint on mobile */
+  .shortcut-pill {
+    display: none;
+  }
+
+  /* Trending tags wrap on small screens */
+  .search-trends {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-top: 18px;
+  }
+
+  /* Discovery pillars: less padding */
+  .discover-pillar {
+    padding: 48px 28px;
+    border-radius: 28px;
+  }
+
+  .pillar-visual {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+  }
+
+  .pillar-title {
+    font-size: 26px;
+  }
+
+  /* Results area cards */
+  .glass-item {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .results-columns { gap: 24px; }
+  .discovery-view { padding-bottom: 60px; }
+  .pillar-layout { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 0 16px;
+  }
+
+  .fluid-hero {
+    padding: 80px 0 48px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .glass-search {
+    height: 52px;
+    padding: 0 16px;
+  }
+
+  .search-fluid {
+    max-width: 100%;
+  }
+
+  .item-primary { font-size: 15px; }
+
+  .pillar-body p {
+    font-size: 14px;
+  }
+
+  .pillar-title {
+    font-size: 22px;
+  }
 }
 </style>

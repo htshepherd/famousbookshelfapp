@@ -305,4 +305,55 @@ const isAdminPage = computed(() => route.path.startsWith('/admin'))
 .page-fade-leave-to {
   opacity: 0;
 }
+
+/* ===== Mobile / H5 ===== */
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding: 0 20px;
+  }
+
+  .logo-type {
+    font-size: 14px;
+  }
+
+  .footer-modern {
+    padding: 48px 0 32px;
+  }
+
+  .footer-container {
+    padding: 0 20px;
+  }
+
+  .footer-grid {
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+
+  .footer-links {
+    gap: 32px;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-inner {
+    padding: 0 16px;
+  }
+
+  /* Shorten logo text on very small screens */
+  .logo-type {
+    font-size: 13px;
+    letter-spacing: -0.03em;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
 </style>

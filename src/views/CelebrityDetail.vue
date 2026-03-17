@@ -373,8 +373,64 @@ onMounted(async () => {
   .book-rec-tile { flex-direction: row; }
 }
 
+/* ===== Mobile / H5 ===== */
+@media (max-width: 768px) {
+  .sub-nav-inner {
+    padding: 0 20px;
+  }
+
+  .detail-container {
+    padding: 40px 20px 80px;
+  }
+
+  .celeb-profile-glass {
+    padding: 28px 20px;
+  }
+
+  .avatar-wrapper {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 20px;
+  }
+
+  .celeb-main-name {
+    font-size: 20px;
+  }
+
+  .rec-masonry-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .detail-skeleton {
+    padding: 40px 20px;
+  }
+}
+
 @media (max-width: 480px) {
-  .book-rec-tile { flex-direction: column; align-items: center; text-align: center; }
-  .book-info { align-items: center; }
+  .sub-nav-inner {
+    padding: 0 16px;
+  }
+
+  .detail-container {
+    padding: 24px 16px 60px;
+  }
+
+  .celeb-profile-glass {
+    padding: 24px 16px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .book-rec-tile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-skeleton {
+    padding: 24px 16px;
+  }
 }
 </style>

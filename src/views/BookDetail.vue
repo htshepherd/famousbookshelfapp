@@ -363,4 +363,88 @@ onMounted(async () => {
   .book-title-main { font-size: 42px; }
   .famous-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== Mobile / H5 ===== */
+@media (max-width: 768px) {
+  .sub-nav-inner {
+    padding: 0 20px;
+    height: 48px;
+  }
+
+  .detail-container {
+    padding: 48px 20px 80px;
+  }
+
+  .book-info-hero {
+    margin-bottom: 60px;
+  }
+
+  .book-title-main {
+    font-size: 36px;
+    letter-spacing: -0.04em;
+  }
+
+  .author-value {
+    font-size: 18px;
+  }
+
+  .book-summary-section {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .summary-content p {
+    font-size: 16px;
+  }
+
+  .famous-recs-section {
+    margin-top: 60px;
+  }
+
+  .famous-card-premium {
+    padding: 16px;
+    gap: 16px;
+    border-radius: 20px;
+  }
+
+  .detail-skeleton {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sub-nav-inner {
+    padding: 0 16px;
+  }
+
+  .detail-container {
+    padding: 32px 16px 60px;
+  }
+
+  .book-title-main {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .book-identity {
+    margin-bottom: 28px;
+  }
+
+  /* Stack author meta vertically on tiny screens */
+  .author-meta {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ünlü-name { font-size: 16px; }
+  .ünlü-tag { font-size: 12px; }
+
+  .hero-aside {
+    max-width: 220px;
+  }
+
+  .detail-skeleton {
+    padding: 32px 16px;
+  }
+}
 </style>

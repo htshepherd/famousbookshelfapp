@@ -381,4 +381,72 @@ onMounted(async () => {
   .author-layout { grid-template-columns: 1fr; }
   .author-sidebar { position: static; margin-bottom: 40px; }
 }
+
+/* ===== Mobile / H5 ===== */
+@media (max-width: 768px) {
+  .sub-nav-inner {
+    padding: 0 20px;
+  }
+
+  .detail-container {
+    padding: 40px 20px 80px;
+  }
+
+  .author-profile-card {
+    padding: 28px 20px;
+  }
+
+  .author-main-name {
+    font-size: 20px;
+  }
+
+  .work-card {
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .work-primary-title {
+    font-size: 17px;
+  }
+
+  .detail-skeleton {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sub-nav-inner {
+    padding: 0 16px;
+  }
+
+  .detail-container {
+    padding: 24px 16px 60px;
+  }
+
+  .author-profile-card {
+    padding: 24px 16px;
+  }
+
+  /* Stack work cards vertically on small screens */
+  .work-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Make book cover fill card width */
+  .work-hero-visual {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 2;
+  }
+
+  .title-text {
+    font-size: 20px;
+  }
+
+  .detail-skeleton {
+    padding: 24px 16px;
+  }
+}
 </style>
